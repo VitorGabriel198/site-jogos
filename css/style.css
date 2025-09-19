@@ -1,0 +1,37 @@
+/* Base */
+:root { --btn-bg:#0ea5e9; --btn-bg-hover:#0284c7; }
+*{box-sizing:border-box}
+body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#0f172a; }
+h1{ font-size: clamp(1.4rem, 5vw, 2.2rem); margin: 14px 0; }
+a{ color:inherit }
+
+/* Menu */
+.menu-bg{ background: linear-gradient(120deg, #4facfe, #00f2fe); min-height:100vh; display:grid; place-items:center; }
+.menu{ background:#ffffffd9; padding:32px; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.15); text-align:center; width:min(92vw, 520px); }
+.menu-links{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+
+/* Topbars */
+.topbar{ display:flex; align-items:center; gap:10px; justify-content:center; padding:8px 12px; }
+.link-voltar{ text-decoration:none; opacity:.9 }
+.memoria-bg{ background: linear-gradient(120deg, #4facfe, #00f2fe); min-height:100vh; display:flex; flex-direction:column; align-items:center; }
+.velha-bg{ background: linear-gradient(120deg, #74ebd5, #acb6e5); min-height:100vh; display:flex; flex-direction:column; align-items:center; }
+
+/* Buttons */
+.btn{ background:var(--btn-bg); color:#fff; text-decoration:none; padding:10px 16px; border-radius:10px; border:none; cursor:pointer; font-weight:600; transition:.2s }
+.btn:hover{ background:var(--btn-bg-hover) }
+
+.controls-row{ display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap; padding:8px 12px; }
+.stats{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:10px; }
+
+/* Boards */
+.board{ display:grid; gap:10px; justify-content:center; padding:10px; width:100%; max-width: min(96vw, 600px); }
+#game-board .card{ width:clamp(56px, 18vw, 110px); height:clamp(56px, 18vw, 110px); background:#fff; color:#000;
+  display:flex; align-items:center; justify-content:center; border-radius:12px; font-size:clamp(1.1rem, 6vw, 2.2rem);
+  cursor:pointer; transition:transform .15s, background .2s; box-shadow:0 2px 6px rgba(0,0,0,.2); }
+#game-board .card.flipped{ background:#f8f9fa; transform:rotateY(180deg) }
+
+/* Tic-tac-toe */
+.board-velha{ grid-template-columns: repeat(3, minmax(88px, 18vw)); gap:8px; }
+.board-velha .cell{ width:clamp(88px, 18vw, 140px); aspect-ratio:1/1; background:#ffffff; border:2px solid #0f172a;
+  display:flex; align-items:center; justify-content:center; border-radius:10px; font-weight:800; font-size:clamp(1.8rem, 8vw, 3rem); cursor:pointer; }
+.board-velha .cell:hover{ background:#eef2ff }
