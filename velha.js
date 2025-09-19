@@ -1,0 +1,51 @@
+window.addEventListener("DOMContentLoaded", () => {
+  const boardEl = document.getElementById("velha-board");
+  const statusEl = document.getElementById("status");
+  const resetBtn = document.getElementById("velha-reset");
+
+  const wins = [
+    [0,1,2],[3,4,5],[6,7,8],
+    [0,3,6],[1,4,7],[2,5,8],
+    [0,4,8],[2,4,6]
+  ];
+  let cells = Array(9).fill("");
+  let player = "X";
+  let active = true;
+
+  function build(){
+    boardEl.innerHTML = "";
+    boardEl.classList.add("board-velha");
+    for(let i=0;i<9;i++){
+      const d = document.createElement("div");
+      d.className = "cell";
+      d.dataset.i = String(i);
+      d.textContent = cells[i];
+      d.addEventListener("click", onClick);
+      boardEl.appendChild(d);
+    }
+    statusEl.textContent = "Vez do jogador " + player;
+  }
+
+  function onClick(e){
+    const i = parseInt(e.currentTarget.dataset.i,10);
+    if(!active || cells[i]) return;
+    cells[i] = player;
+    e.currentTarget.textContent = player;
+    check();
+  }
+
+  function check(){
+    let win = wins.some(([a,b,c]) => cells[a] && cells[a]===cells[b] && cells[a]===cells[c]);
+    if(win){ statusEl.textContent = "🎉 Jogador " + player + " venceu!"; active=false; return; }
+    if(!cells.includes("")){ statusEl.textContent = "😮 Empate!"; active=false; return; }
+    player = (player==="X") ? "O" : "X";
+    statusEl.textContent = "Vez do jogador " + player;
+  }
+
+  function reset(){
+    player="X"; cells=Array(9).fill(""); active=true; build();
+  }
+
+  resetBtn.addEventListener("click", reset);
+  build();
+});
